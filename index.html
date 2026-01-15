@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.app {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    height: 100%;
+}
+
+.clock {
+    text-align: center;
+    font-size: 22vw;
+    font-weight: 600;
+    line-height: 1;
+    padding-top: 2vh;
+}
+
+.weather {
+    height: 22vh;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100%;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- CLOCK -->
+    <div class="clock" id="clock"></div>
+
+    <!-- WEATHER -->
+    <div class="weather">
+        <iframe
+            src="https://www.meteoblue.com/en/weather/widget/daily/vienna_austria_2761369?darkmode=true">
+        </iframe>
+    </div>
+
+    <!-- TRANSPORT + CALENDAR -->
+    <div class="main">
+
+        <!-- U4 Meidlinger Hauptstraße → Heiligenstadt -->
+        <iframe
+            src="https://www.wienerlinien.at/monitor?stopId=90200107&lineId=U4&direction=H">
+        </iframe>
+
+        <!-- U6 Niederhofstraße → Floridsdorf -->
+        <iframe
+            src="https://www.wienerlinien.at/monitor?stopId=90200420&lineId=U6&direction=F">
+        </iframe>
+
+        <!-- GOOGLE CALENDAR -->
+        <iframe
+            src="https://calendar.google.com/calendar/embed?src=noyailansu%40gmail.com&mode=AGENDA&bgcolor=%23000000&color=%23ffffff&showTitle=0&showNav=0&showDate=0">
+        </iframe>
+
+    </div>
+</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    document.getElementById("clock").innerText =
+        now.toLocaleTimeString("he-IL", { hour: "2-digit", minute: "2-digit" });
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
